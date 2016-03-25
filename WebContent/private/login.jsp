@@ -8,14 +8,10 @@
 </head>
 <body>
 I'm trying this bloody shit.
-<form action = "RPC">
-	<input type = "submit" value = "Send" />
-</form>
-<form action= "RequestUpload" method = "POST">
-First Name: <input type = "text" name = "first_name">
-<br />
-Last Name: <input type = "text" name = "last_name" />
-<input type = "submit" value = "Submit" />
+<form action="j_security_check" method="post">
+    <input type="text" name="j_username">
+    <input type="password" name="j_password">
+    <input type="submit">
 </form>
 </body>
 </html>

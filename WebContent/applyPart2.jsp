@@ -11,17 +11,17 @@
 
 	<form action = "RequestUpload" method = "POST">
 		<fieldset>
-			<legend><h3>Данные о сотруднике</h3></legend>
-			Фамилия:<br>
-			<input type="text" name="name"><br>
-			Имя:<br>
-			<input type="text" name="surname"><br>
-			Отчество:<br>
-			<input type="text" name="secondname"><br>
-			Должность:<br>
-			<input type="text" name="role"><br>
-			Структурное подразделение:<br>
-			<input type="text" name="department"><br>
+			<legend><h3>Данные об обучении</h3></legend>
+			Форма обучения:<br>
+			<input type="text" name="edutype"><br>
+			Количество часов:<br>
+			<input type="number" step="1" name="hours"><br>
+			Название программы:<br>
+			<input type="text" name="eduname"><br>
+			Сумма:<br>
+			<input type="number" step="0.01" name="amount"><br>
+			Обучающая сторона:<br>
+			<input type="text" name="educomp"><br>
 		</fieldset>
 		<input type = "submit" value = "Submit" />
 	</form>

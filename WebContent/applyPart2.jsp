@@ -9,16 +9,20 @@
 <body>
 	<h1>Подать заявку о необходимости обучения сотрудника</h1>
 
-	<form action = "RequestUpload" method = "POST">
+	<form action = "StudUpload" method = "POST">
 		<fieldset>
 			<legend><h3>Данные об обучении</h3></legend>
+			User ID:<br>
+			<input type="number" name="user"><br>
+			Номер программы обучения:<br>
+			<input type="number" name="num"><br>
 			Форма обучения:<br>
 			<input type="text" name="edutype"><br>
 			Количество часов:<br>
 			<input type="number" step="1" name="hours"><br>
 			Название программы:<br>
 			<input type="text" name="eduname"><br>
-			Сумма:<br>
+			Стоимость обучения:<br>
 			<input type="number" step="0.01" name="amount"><br>
 			Обучающая сторона:<br>
 			<input type="text" name="educomp"><br>

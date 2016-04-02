@@ -1,4 +1,4 @@
-package com.depart.workers2;
+package com.depart.stud;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,8 +20,8 @@ import org.json.simple.parser.ParseException;
 import com.depart.writeTODB.*;
 import com.google.gson.Gson;
 
-@WebServlet("/RequestUpload")
-public class RequestUpload extends HttpServlet {
+@WebServlet("/StudUpload")
+public class StudUpload extends HttpServlet {
 
 
 	/**
@@ -53,7 +53,7 @@ public class RequestUpload extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json.toString());
-        uplRequest.upload(json);
+        uplStud.upload(json);
     }
 
 }

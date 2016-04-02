@@ -4,24 +4,29 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<title>Подать заявку</title>
+	<title>Регистрация</title>
 </head>
 <body>
-	<h1>Подать заявку о необходимости обучения сотрудника</h1>
+	<h1>Зарегистрировать пользователя</h1>
 
 	<form action = "RequestUpload" method = "POST">
 		<fieldset>
 			<legend><h3>Данные о сотруднике</h3></legend>
 			Фамилия:<br>
-			<input type="text" name="name"><br>
-			Имя:<br>
 			<input type="text" name="surname"><br>
+			Имя:<br>
+			<input type="text" name="name"><br>
 			Отчество:<br>
 			<input type="text" name="secondname"><br>
 			Должность:<br>
 			<input type="text" name="role"><br>
 			Структурное подразделение:<br>
 			<input type="text" name="department"><br>
+			Логин:<br>
+			<input type="text" name="login"><br>
+			Пароль:<br>
+			<input type="password" name="pass"><br>
+			
 		</fieldset>
 		<input type = "submit" value = "Submit" />
 	</form>

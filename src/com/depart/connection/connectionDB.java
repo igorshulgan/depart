@@ -1,4 +1,4 @@
-package com.connection;
+package com.depart.connection;
 
 import java.io.File;
 import java.io.FileNotFoundException;

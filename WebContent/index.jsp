@@ -1,21 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Главное меню</title>
 </head>
 <body>
-I'm trying this bloody shit.
-<form action = "RPC">
-	<input type = "submit" value = "Send" />
-</form>
-<form action= "RequestUpload" method = "POST">
-First Name: <input type = "text" name = "first_name">
-<br />
-Last Name: <input type = "text" name = "last_name" />
-<input type = "submit" value = "Submit" />
-</form>
+	<button><a href="apply.jsp">Подать заявку</a></button>
 </body>
 </html>

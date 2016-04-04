@@ -3,6 +3,9 @@ package com.depart.writeTODB;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -25,15 +28,31 @@ public class uplRequest {
 		JSONArray password =  (JSONArray) req.get("pass");
 		
 		String pass = new String();
+		String hex = new String();
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			
-			md.update(password.get(0).toString().getBytes());
-			pass = md.digest().toString();
+			md.update(password.get(0).toString().trim().getBytes());
+			
+			byte byteData[] = md.digest();
+			md.reset();
+			
+	        StringBuffer sb = new StringBuffer();
+	        
+	        for (int i = 0; i < byteData.length; i++) {
+	            sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+	        }
+	        try {
+		        pass = sb.toString();
+		    } catch (Exception e) {
+		        pass = "";
+		    }
+
 		} catch (NoSuchAlgorithmException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		
 		
 		
@@ -44,6 +63,7 @@ public class uplRequest {
 		
 		
 		System.out.println(sql);
+		System.out.println(hex);
 		try {
 			Statement sqlStat = db.createStatement();
 			sqlStat.execute(sql);

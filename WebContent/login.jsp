@@ -9,11 +9,11 @@
 <body>
 	<h1>Войти</h1>
 
-	<form action = "login" method = "POST">
+	<form action="j_security_check" method = "POST">
 			Логин:<br>
-			<input type="text" name="login"><br>
+			<input type="text" name="j_username"><br>
 			Пароль:<br>
-			<input type="password" name="psw"><br>
+			<input type="password" name="j_password"><br>
 		<input type = "submit" value = "Войти" />
 	</form>
 </body>

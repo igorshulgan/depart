@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Context reloadable="true" privileged="true">
+  <Realm className="org.apache.catalina.realm.LockOutRealm">
+    <!-- This Realm uses the UserDatabase configured in the global JNDI
+         resources under the key "UserDatabase".  Any edits
+         that are performed against this UserDatabase are immediately
+         available for use by the Realm.  
+
+    <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/> -->
+
+
+    <Realm className="org.apache.catalina.realm.JDBCRealm"
+             driverName="org.postgresql.Driver" 
+             connectionURL="jdbc:postgresql://localhost/depart?user=postgres&amp;password=postgres"
+             userTable="public.users" userNameCol="login" userCredCol="password"
+             userRoleTable="public.users" roleNameCol="role"
+             digest = "MD5" />
+  </Realm>
+</Context>

@@ -1,4 +1,4 @@
-package com.depart.signin;
+package com.depart.stud;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,8 +20,8 @@ import org.json.simple.parser.ParseException;
 import com.depart.writeTODB.*;
 import com.google.gson.Gson;
 
-@WebServlet("/RequestUpload")
-public class NewUser extends HttpServlet {
+@WebServlet("/NewRequest")
+public class NewRequest extends HttpServlet {
 
 
 	/**
@@ -35,7 +35,7 @@ public class NewUser extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	
+
     	request.setCharacterEncoding("UTF-8");
     	
         Map<String, String[]> options = new LinkedHashMap<>();
@@ -55,7 +55,7 @@ public class NewUser extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json.toString());
-        SignIn.upload(json);
+        UplRequest.upload(json);
     }
 
 }

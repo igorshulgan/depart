@@ -7,6 +7,6 @@
 	<title>Главное меню</title>
 </head>
 <body>
-	<button><a href="apply.jsp">Подать заявку</a></button>
+	<button><a href="signin.jsp">Регистрация</a></button>
 </body>
 </html>

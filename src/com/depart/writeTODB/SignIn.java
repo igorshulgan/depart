@@ -14,7 +14,7 @@ import org.json.simple.JSONObject;
 
 import com.depart.connection.connectionDB;
 
-public class uplRequest {
+public class SignIn {
 	
 	public static void upload(JSONObject req){
 		Connection db = connectionDB.createConnection();

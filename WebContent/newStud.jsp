@@ -4,10 +4,10 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<title>Подать заявку</title>
+	<title>Добавить обучение</title>
 </head>
 <body>
-	<h1>Подать заявку о необходимости обучения сотрудника</h1>
+	<h1>Добавить данные об обучении сотрудника</h1>
 
 	<form action = "StudUpload" method = "POST">
 		<fieldset>

@@ -1,4 +1,4 @@
-package com.depart.request;
+package com.depart.signin;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +21,7 @@ import com.depart.writeTODB.*;
 import com.google.gson.Gson;
 
 @WebServlet("/RequestUpload")
-public class RequestUpload extends HttpServlet {
+public class NewUser extends HttpServlet {
 
 
 	/**
@@ -54,7 +54,7 @@ public class RequestUpload extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json.toString());
-        uplRequest.upload(json);
+        SignIn.upload(json);
     }
 
 }

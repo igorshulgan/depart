@@ -11,23 +11,15 @@ import org.json.simple.JSONObject;
 
 import com.depart.connection.connectionDB;
 
-public class UplRequest {
+public class MoveStud {
 	
 	public static void upload(JSONObject req){
 		Connection db = connectionDB.createConnection();
 	
-		JSONArray user = (JSONArray) req.get("user");
-		JSONArray num = (JSONArray) req.get("num");
-		JSONArray hours = (JSONArray) req.get("hours");
-		JSONArray cost = (JSONArray) req.get("amount");
-		JSONArray name = (JSONArray) req.get("eduname");
-		JSONArray type = (JSONArray) req.get("edutype");
-		JSONArray comp = (JSONArray) req.get("educomp");
-		JSONArray budget = (JSONArray) req.get("budget");
+		JSONArray id = (JSONArray) req.get("id");
 		
-		String sql = "SELECT * FROM addnewrequest(" + user.get(0) + ", " + num.get(0) +
-				", " + hours.get(0) + ", " + cost.get(0) + ", '"  + comp.get(0) +
-				"', '"  + name.get(0) + "', '" + type.get(0) + "', " + budget.get(0) + ")";
+		
+		String sql = "SELECT * FROM movestud(" + id.get(0) + ")";
 		
 		System.out.println(sql);
 		try {

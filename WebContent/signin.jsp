@@ -12,14 +12,9 @@
 <body>
 <div class="container-fluid">
 <div class="row header">
-
 		<div class="col-sm-10">
-			<h1>Регистрация сотрудника</h1>
+			<h1>Регистрация</h1>
 		</div>
-		<div class="col-sm-2">
-			<a class="logout" href="logout.jsp">Выйти</a>
-		</div>
-
 </div>
 <div class="row">
 <div class="col-sm-3">

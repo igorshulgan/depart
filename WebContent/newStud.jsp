@@ -13,12 +13,12 @@
 <div class="container-fluid">
 <div class="row header">
 
-		<div class="col-sm-10">
+		<div class="col-sm-9">
 			<h1>Добавить данные об обучении сотрудника</h1>
 		</div>
-		<div class="col-sm-2">
-			<a class="logout" href="menu.jsp">����</a>
-			<a class="logout" href="logout.jsp">�����</a>
+		<div class="col-sm-3">
+			<a class="logout" href="menu.jsp">Меню</a>
+			<a class="logout" href="logout.jsp">Выйти</a>
 		</div>
 
 </div>
@@ -57,7 +57,7 @@
 				<label for="educomp">Обучающая сторона:</label>
 				<input class="form-control" id="educomp" type="text" name="educomp">
 			</div>
-			<button class="btn-main" type = "submit">���������</button>
+			<button class="btn-main" type = "submit">Отправить</button>
 	</form>
 </div>
 <div class="col-sm-3">

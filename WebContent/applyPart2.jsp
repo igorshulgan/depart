@@ -4,31 +4,24 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<title>Добавить обучение</title>
+	<title>Подать заявку</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <div class="container-fluid">
-<div class="row header">
-
-		<div class="col-sm-10">
-			<h1>Добавить данные об обучении сотрудника</h1>
-		</div>
-		<div class="col-sm-2">
-			<a class="logout" href="menu.jsp">����</a>
-			<a class="logout" href="logout.jsp">�����</a>
-		</div>
-
+<div class="row">
+	<div class="header">
+		<h1>Подать заявку о необходимости обучения сотрудника</h2>
+	</div>
 </div>
 <div class="row">
 <div class="col-sm-3">
 </div>
 <div class="col-sm-6"
 
-	
-	<form action = "StudUpload" method = "POST">
+	<form role="form" action = "StudUpload" method = "POST">
 			<div class="form-group">
 				<label for="user">User ID:</label>
 				<input class="form-control" type="number" name="user" id="user" required>

@@ -5,16 +5,32 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Войти</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-	<h1>Войти</h1>
-
-	<form action="j_security_check" method = "POST">
-			Логин:<br>
-			<input type="text" name="j_username"><br>
-			Пароль:<br>
-			<input type="password" name="j_password"><br>
-		<input type = "submit" value = "Войти" />
+<div class="container">
+<div class="row">
+<div class="col-sm-4">
+</div>
+<div class="col-sm-4 mrg-top">
+	<form role="form" action="j_security_check" method = "POST">
+			<div class="form group">
+				<label for="username">Логин:</label>
+				<input type="text" class="form-control" name="j_username" id="username">
+			</div>
+			<div class="form-group">
+				<label for="psw">Пароль:</label>
+				<input type="password" class="form-control" name="j_password" id="psw">
+			</div>
+		<button class="btn-main" type = "submit">Войти</button>
 	</form>
+	<a class="btn-main btn-second" href="signin.jsp">Регистрация</a>
+</div>
+<div class="col-sm-4">
+</div>
+</div>
+</div>
 </body>
 </html>

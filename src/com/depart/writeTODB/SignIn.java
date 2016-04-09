@@ -58,7 +58,7 @@ public class SignIn {
 		
 		String sql = "SELECT * FROM adduser('" + name.get(0) + "', '" + surname.get(0) +
 				"', '" + secondname.get(0) + "', '" + role.get(0) + 
-				"', '"  + department.get(0) + "', '" + login.get(0) + "', '" +
+				"', "  + department.get(0) + ", '" + login.get(0) + "', '" +
 				pass + "')";
 		
 		

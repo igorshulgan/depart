@@ -21,7 +21,7 @@
 			Должность:<br>
 			<input type="text" name="role"><br>
 			Структурное подразделение:<br>
-			<input type="text" name="department"><br>
+			<input type="number" name="department"><br>
 			Логин:<br>
 			<input type="text" name="login"><br>
 			Пароль:<br>

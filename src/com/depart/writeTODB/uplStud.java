@@ -23,6 +23,11 @@ public class uplStud {
 		JSONArray name = (JSONArray) req.get("eduname");
 		JSONArray type = (JSONArray) req.get("edutype");
 		
+		if (hours.get(0).toString().isEmpty()) {
+			hours.clear();
+			hours.add(0, new Integer(0));
+			
+		}
 		
 		String sql = "SELECT * FROM adduserstud(" + user.get(0) + ", " + num.get(0) +
 				", " + hours.get(0) + ", " + cost.get(0) + 

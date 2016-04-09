@@ -30,52 +30,33 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- Name: addnewrequest(integer, integer, integer, numeric, character varying, character varying, numeric); Type: FUNCTION; Schema: public; Owner: postgres
+-- Name: addnewrequest(integer, integer, integer, numeric, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
-CREATE FUNCTION addnewrequest(a_user integer, a_num integer, a_hours integer, a_cost numeric, a_name character varying, a_type character varying, a_budget numeric) RETURNS integer
-    LANGUAGE plpgsql
-    AS $$
-BEGIN
-	BEGIN
-		INSERT INTO user_request (user_id, num_stud, hours, cost, name_st,
-		 type_st, budget)
-		 VALUES(a_user, a_num, a_hours, a_cost, a_name,
-		 a_type, a_budget);
-	EXCEPTION
-		WHEN unique_violation THEN
-			return 0;
-	END;
-	return 1;
-END;
-$$;
-
-
-ALTER FUNCTION public.addnewrequest(a_user integer, a_num integer, a_hours integer, a_cost numeric, a_name character varying, a_type character varying, a_budget numeric) OWNER TO postgres;
-
---
--- Name: addnewrequest(integer, integer, integer, numeric, character varying, character varying, character varying, numeric); Type: FUNCTION; Schema: public; Owner: postgres
---
-
-CREATE FUNCTION addnewrequest(a_user integer, a_num integer, a_hours integer, a_cost numeric, a_comp character varying, a_name character varying, a_type character varying, a_budget numeric) RETURNS integer
+CREATE FUNCTION addnewrequest(a_user integer, a_num integer, a_hours integer, a_cost numeric, a_comp character varying, a_name character varying, a_type character varying) RETURNS integer
     LANGUAGE plpgsql
     AS $$
 BEGIN
 	BEGIN
 		INSERT INTO user_request (user_id, num_stud, hours, comp_name, cost, name_st,
-		 type_st, budget)
+		 type_st)
 		 VALUES(a_user, a_num, a_hours,a_comp, a_cost, a_name,
-		 a_type, a_budget);
+		 a_type);
 	EXCEPTION
 		WHEN unique_violation THEN
 			return 0;
 	END;
+	IF ((SELECT budget FROM department WHERE id = 
+		(SELECT department FROM users WHERE id = a_user)) >= a_cost) THEN
+			UPDATE user_request SET enough_money = 1 WHERE id = LAST(id);
+	END IF;
+	
 	return 1;
 END;
 $$;
 
 
-ALTER FUNCTION public.addnewrequest(a_user integer, a_num integer, a_hours integer, a_cost numeric, a_comp character varying, a_name character varying, a_type character varying, a_budget numeric) OWNER TO postgres;
+ALTER FUNCTION public.addnewrequest(a_user integer, a_num integer, a_hours integer, a_cost numeric, a_comp character varying, a_name character varying, a_type character varying) OWNER TO postgres;
 
 --
 -- Name: adduser(character varying, character varying, character varying, character varying, integer, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
@@ -262,7 +243,8 @@ CREATE TABLE user_request (
     cost numeric,
     hours integer,
     budget numeric,
-    comp_name character varying(100)
+    comp_name character varying(100),
+    enough_money integer DEFAULT 0
 );
 
 
@@ -439,8 +421,9 @@ SELECT pg_catalog.setval('documents_id_seq', 1, false);
 -- Data for Name: user_request; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY user_request (id, user_id, num_stud, doc_id, type_st, name_st, budget_amount, cost, hours, budget, comp_name) FROM stdin;
-4	13	202	\N	pdf	sdsdf	\N	-0.17	-15	-0.19	sdfsd
+COPY user_request (id, user_id, num_stud, doc_id, type_st, name_st, budget_amount, cost, hours, budget, comp_name, enough_money) FROM stdin;
+4	13	202	\N	pdf	sdsdf	\N	-0.17	-15	-0.19	sdfsd	\N
+6	1	1	\N			\N	0.73	-9	\N		0
 \.
 
 
@@ -448,7 +431,7 @@ COPY user_request (id, user_id, num_stud, doc_id, type_st, name_st, budget_amoun
 -- Name: user_request_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('user_request_id_seq', 4, true);
+SELECT pg_catalog.setval('user_request_id_seq', 6, true);
 
 
 --

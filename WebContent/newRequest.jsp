@@ -26,8 +26,7 @@
 			<input type="number" step="0.01" name="amount"><br>
 			Обучающая сторона:<br>
 			<input type="text" name="educomp"><br>
-			Информация о наличии средств в бюджете:<br>
-			<input type="number" step="0.01" name="budget"><br>
+
 		</fieldset>
 		<input type = "submit" value = "Submit" />
 	</form>

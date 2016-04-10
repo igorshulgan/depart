@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page import="java.net.URL" import="org.json.simple.*" import="org.json.simple.parser.JSONParser" import="java.io.BufferedReader" import="java.io.InputStreamReader" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//RU" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ru">
@@ -24,31 +24,51 @@
 	<form role="form" action = "RequestUpload" method = "POST">
 			<div class="form-group">
 				<label for="surname">Фамилия:</label>
-				<input class="form-control" type="text" name="surname" id="surname">
+				<input class="form-control" type="text" name="surname" id="surname" required>
 			</div>
 			<div class="form-group">
 				<label for="name">Имя:</label>
-				<input class="form-control" type="text" name="name" id="name">
+				<input class="form-control" type="text" name="name" id="name" required>
 			</div>
 			<div class="form-group">
 				<label for"secondnam">Отчество:</label>
-				<input class="form-control" type="text" name="secondname">
+				<input class="form-control" type="text" name="secondname" required>
 			</div>
 			<div class="form-group">
 				<label for="role">Должность:</label>
-				<input class="form-control" id="role" type="text" name="role">
+				<input class="form-control" id="role" type="text" name="role" required>
 			</div>
+			<% 
+	 			URL url = new URL("http://localhost:8080/webApp/Departments");
+			    BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+			    String str = new String();
+			    String departs = new String();
+			    while ((str = in.readLine()) != null) {
+			      departs = departs + str;
+			    }
+			    in.close(); 
+			    JSONParser parser = new JSONParser();
+				JSONArray json = (JSONArray) parser.parse(departs);
+		    %>
 			<div class="form-group">
 				<label for="depart">Структурное подразделение:</label>
-				<input class="form-control" id="depart" type="text" name="department">
+				<select class="form-control" id="depart" name="department">
+					<%	
+						JSONObject depart = (JSONObject) json.get(0);
+						for (int i = 0; i < json.size(); i ++) {	
+							depart = (JSONObject) json.get(i);	
+							out.println("<option value='"+depart.get("name") + "'>" + depart.get("name") + "</option>");
+						}
+					%>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="login">Логин:</label>
-				<input class="form-control" id="login" type="text" name="login">
+				<input class="form-control" id="login" type="text" name="login" required>
 			</div>
 			<div class="form-group">
 				<label for="pass">Пароль:</label>
-				<input class="form-control" id="pass" type="password" name="pass">
+				<input class="form-control" id="pass" type="password" name="pass" required>
 			</div>		
 			<button class="btn-main" type = "submit">Отправить</button>
 	</form>

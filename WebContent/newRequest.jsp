@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page import="java.net.URL" import="org.json.simple.*" import="org.json.simple.parser.JSONParser" import="java.io.BufferedReader" import="java.io.InputStreamReader" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//RU" "http://www.w3.org/TR/html4/loose.dtd">
  <html lang="ru"> 
@@ -12,7 +12,6 @@
  <body> 
  <div class="container-fluid">
 <div class="row header">
-
 		<div class="col-sm-9">
 			<h1>Подать заявку на обучение сотрудника</h1>
 		</div>
@@ -26,10 +25,30 @@
 </div>
 <div class="col-sm-6"
  	<form role="form" action = "NewRequest" method = "POST"> 
- 			<div class="form-group">
- 				<label for="user">Обучаемый сотрудник:</label> 
- 				<input class="form-control" id="user" type="number" name="user">
- 			</div> 
+ 		<% 
+ 			URL url = new URL("http://localhost:8080/webApp/Users");
+		    BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+		    String str = new String();
+		    String userstxt = new String();
+		    while ((str = in.readLine()) != null) {
+		      userstxt = userstxt + str;
+		    }
+		    in.close(); 
+		    JSONParser parser = new JSONParser();
+			JSONArray users = (JSONArray) parser.parse(userstxt);
+		%>
+		    <div class="form-group">
+				<label for="user">Обучаемый сотрудник:</label>
+				<select class="form-control" id="user" name="user">
+					<%	
+						JSONObject user = (JSONObject) users.get(0);
+						for (int i = 0; i < users.size(); i ++) {	
+							user = (JSONObject) users.get(i);	
+							out.println("<option value='" + user.get("id") + "'>" + user.get("surname") + " " + user.get("name") + "</option>");
+						}
+					%>
+				</select>
+			</div>
  			<div class="form-group">
 				<label for="num">Номер программы обучения:</label>
 				<input type="number" name="num" id="num" class="form-control" required>
@@ -40,7 +59,7 @@
 			</div>
 			<div class="form-group">
 				<label for="hours">Количество часов:</label>
-				<input class="form-control" type="number" step="1" name="hours">
+				<input class="form-control" type="number" step="1" name="hours" required>
 			</div>
 			<div class="form-group">
 				<label for="eduname">Название программы:</label>

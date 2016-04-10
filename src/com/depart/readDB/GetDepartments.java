@@ -17,7 +17,7 @@ public class GetDepartments {
 	public static JSONArray get() throws ParseException{
 		Connection db = connectionDB.createConnection();
 	
-		String sql = "SELECT name FROM department";
+		String sql = "SELECT name, id FROM department";
 		JSONArray res = new JSONArray();
 		
 		System.out.println(sql);

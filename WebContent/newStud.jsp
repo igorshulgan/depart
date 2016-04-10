@@ -45,7 +45,7 @@
 				<label for="user">Обучаемый сотрудник:</label>
 				<select class="form-control" id="user" name="user">
 					<%	
-						JSONObject user = (JSONObject) users.get(0);
+						JSONObject user = new JSONObject();
 						for (int i = 0; i < users.size(); i ++) {	
 							user = (JSONObject) users.get(i);	
 							out.println("<option value='" + user.get("id") + "'>" + user.get("surname") + " " + user.get("name") + "</option>");

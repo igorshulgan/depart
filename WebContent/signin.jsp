@@ -54,10 +54,10 @@
 				<label for="depart">Структурное подразделение:</label>
 				<select class="form-control" id="depart" name="department">
 					<%	
-						JSONObject depart = (JSONObject) json.get(0);
+						JSONObject depart = new JSONObject();
 						for (int i = 0; i < json.size(); i ++) {	
 							depart = (JSONObject) json.get(i);	
-							out.println("<option value='"+depart.get("name") + "'>" + depart.get("name") + "</option>");
+							out.println("<option value=\"'" + depart.get("name") + "'\">" + depart.get("name") + "</option>");
 						}
 					%>
 				</select>

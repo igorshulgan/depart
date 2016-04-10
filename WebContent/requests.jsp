@@ -12,14 +12,18 @@
 <body>
 <div class="container-fluid">
 <div class="row header">
-		<div class="col-sm-10">
+		<div class="col-sm-9">
 			<h1>Просмотр заявок</h1>
+		</div>
+		<div class="col-sm-3">
+			<a class="logout" href="menu.jsp">Меню</a>
+			<a class="logout" href="logout.jsp">Выйти</a>
 		</div>
 </div>
 <div class="row">
-<div class="col-sm-3">
+<div class="col-sm-1">
 </div>
-<div class="col-sm-6">
+<div class="col-sm-10">
 			<% 
 	 			URL url = new URL("http://localhost:8080/webApp/Requests");
 			    BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -36,15 +40,42 @@
 				<thead>
 					<tr>
 						<th>Сотрудник</th>
+						<th>Номер программы обучения</th>
+						<th>Форма обучения</th>
+						<th>Количество часов</th>
+						<th>Название программы</th>
+						<th>Стоимость обучения</th>
+						<th>Обучающая сторона</th>
+						<th>Принять заявку</th>
 					</tr>
 				</thead>
 				<tbody>
-					
+					<%	
+						JSONObject req = new JSONObject();
+						for (int i = 0; i < requests.size(); i ++) {	
+							req = (JSONObject) requests.get(i);	
+							out.println("<tr>");
+							out.println("<td>" + req.get("secondname") + " " + req.get("name") + " " + req.get("surname") + "</td>");
+							out.println("<td>" + req.get("num_stud") + "</td>");
+							out.println("<td>" + req.get("type_st") + "</td>");
+							out.println("<td>" + req.get("hours") + "</td>");
+							out.println("<td>" + req.get("name_st") + "</td>");
+							out.println("<td>" + req.get("cost") + "</td>");
+							out.println("<td>" + req.get("comp_name") + "</td>");
+							out.println("<form action = 'AcceptStud' method = 'POST'>");
+							out.println("<input hidden type='number' name='id' value='" + req.get("id") + "'>");
+							out.println("<td><button class='btn-main' type = 'submit'>Принять</button></td>");
+							out.println("</form>");
+							
+							out.println("</tr>");
+							
+						}
+					%>
 				</tbody>
 			</table>
 
 </div>
-<div class="col-sm-3">
+<div class="col-sm-1">
 </div>
 </div>
 </div>

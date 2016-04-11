@@ -13,7 +13,7 @@
              driverName="org.postgresql.Driver" 
              connectionURL="jdbc:postgresql://localhost/depart?user=postgres&amp;password=postgres"
              userTable="public.users" userNameCol="login" userCredCol="password"
-             userRoleTable="public.users" roleNameCol="role"
+             userRoleTable="public.users" roleNameCol="key"
              digest = "MD5" />
   </Realm>
 </Context>

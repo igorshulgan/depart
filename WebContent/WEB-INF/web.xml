@@ -30,7 +30,7 @@
         <http-method>POST</http-method>
     </web-resource-collection>
     <auth-constraint>
-        <role-name>manager</role-name>
+        <role-name>e46gh78</role-name>
     </auth-constraint>
 </security-constraint>
     <login-config>

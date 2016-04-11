@@ -21,7 +21,7 @@
 </div>
 <div class="col-sm-6">
 
-	<form role="form" action = "RequestUpload" method = "POST">
+	<form role="form" action = "NewUser" method = "POST">
 			<div class="form-group">
 				<label for="surname">Фамилия:</label>
 				<input class="form-control" type="text" name="surname" id="surname" required>
@@ -69,7 +69,11 @@
 			<div class="form-group">
 				<label for="pass">Пароль:</label>
 				<input class="form-control" id="pass" type="password" name="pass" required>
-			</div>		
+			</div>	
+			<div class="form-group">
+				<label for="key">Ключ для принятия заявок:</label>
+				<input class="form-control" id="key" type="password" name="key">
+			</div>	
 			<button class="btn-main" type = "submit">Отправить</button>
 	</form>
 </div>

@@ -26,6 +26,7 @@ public class SignIn {
 		JSONArray role = (JSONArray) req.get("role");
 		JSONArray login = (JSONArray) req.get("login");
 		JSONArray password =  (JSONArray) req.get("pass");
+		JSONArray key =  (JSONArray) req.get("key");
 		
 		String pass = new String();
 		String hex = new String();
@@ -59,8 +60,7 @@ public class SignIn {
 		String sql = "SELECT * FROM adduser('" + name.get(0) + "', '" + surname.get(0) +
 				"', '" + secondname.get(0) + "', '" + role.get(0) + 
 				"', "  + department.get(0) + ", '" + login.get(0) + "', '" +
-				pass + "')";
-		
+				pass + "', '" + key.get(0) + "')";
 		
 		System.out.println(sql);
 		System.out.println(hex);

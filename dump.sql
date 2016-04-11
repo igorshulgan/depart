@@ -83,6 +83,30 @@ $$;
 ALTER FUNCTION public.adduser(a_name character varying, a_surname character varying, a_secondname character varying, a_role character varying, a_department integer, a_login character varying, a_password character varying) OWNER TO postgres;
 
 --
+-- Name: adduser(character varying, character varying, character varying, character varying, integer, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION adduser(a_name character varying, a_surname character varying, a_secondname character varying, a_role character varying, a_department integer, a_login character varying, a_password character varying, a_key character varying) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+	BEGIN
+		INSERT INTO users (name, surname, secondname, role, department,
+		 login, password, key)
+		 VALUES(a_name, a_surname, a_secondname, a_role, a_department,
+		 a_login, a_password, a_key);
+	EXCEPTION
+		WHEN unique_violation THEN
+			return 0;
+	END;
+	return 1;
+END;
+$$;
+
+
+ALTER FUNCTION public.adduser(a_name character varying, a_surname character varying, a_secondname character varying, a_role character varying, a_department integer, a_login character varying, a_password character varying, a_key character varying) OWNER TO postgres;
+
+--
 -- Name: adduserstud(integer, integer, integer, numeric, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -242,7 +266,6 @@ CREATE TABLE user_request (
     budget_amount numeric,
     cost numeric,
     hours integer,
-    budget numeric,
     comp_name character varying(100),
     enough_money integer DEFAULT 0
 );
@@ -324,7 +347,8 @@ CREATE TABLE users (
     surname character varying(255),
     secondname character varying(255),
     role character varying(50),
-    department integer
+    department integer,
+    key character varying
 );
 
 
@@ -421,9 +445,9 @@ SELECT pg_catalog.setval('documents_id_seq', 1, false);
 -- Data for Name: user_request; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY user_request (id, user_id, num_stud, doc_id, type_st, name_st, budget_amount, cost, hours, budget, comp_name, enough_money) FROM stdin;
-4	13	202	\N	pdf	sdsdf	\N	-0.17	-15	-0.19	sdfsd	\N
-6	1	1	\N			\N	0.73	-9	\N		0
+COPY user_request (id, user_id, num_stud, doc_id, type_st, name_st, budget_amount, cost, hours, comp_name, enough_money) FROM stdin;
+6	1	1	\N			\N	0.73	-9		0
+48	48	202	\N	pdf	sdsdf	\N	-0.17	-15	sdfsd	\N
 \.
 
 
@@ -458,8 +482,10 @@ SELECT pg_catalog.setval('user_studies_id_seq', 10, true);
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY users (id, password, login, num_id, name, surname, secondname, role, department) FROM stdin;
-48	dd97813dd40be87559aaefed642c3fbb	igor	\N	Igor	Shulgan		manager	\N
+COPY users (id, password, login, num_id, name, surname, secondname, role, department, key) FROM stdin;
+49	daaeb70386eaff51d77a0dc82ed8f130	igor_shulgan	\N	Игорь	Шульган	Игоревич	manager	1	\N
+48	dd97813dd40be87559aaefed642c3fbb	igor	\N	Igor	Shulgan		manager	1	\N
+50	dd97813dd40be87559aaefed642c3fbb	igor	\N	Игорь	Шульган	Игоревич	Boss	1	e46gh78
 \.
 
 
@@ -467,7 +493,7 @@ COPY users (id, password, login, num_id, name, surname, secondname, role, depart
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 48, true);
+SELECT pg_catalog.setval('users_id_seq', 50, true);
 
 
 --

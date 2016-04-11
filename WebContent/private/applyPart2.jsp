@@ -19,7 +19,7 @@
 <div class="row">
 <div class="col-sm-3">
 </div>
-<div class="col-sm-6"
+<div class="col-sm-6">
 
 	<form role="form" action = "StudUpload" method = "POST">
 			<div class="form-group">
@@ -50,7 +50,7 @@
 				<label for="educomp">РћР±СѓС‡Р°СЋС‰Р°СЏ СЃС‚РѕСЂРѕРЅР°:</label>
 				<input class="form-control" id="educomp" type="text" name="educomp">
 			</div>
-			<button class="btn-main" type = "submit">Отправить</button>
+			<button class="btn-main" type = "submit">пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</button>
 	</form>
 </div>
 <div class="col-sm-3">

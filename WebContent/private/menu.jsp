@@ -25,10 +25,10 @@
 <div class="col-sm-4">
 </div>
 <div class="col-sm-4 menu-box">	
-	<a class="btn-main btn-second" href="newRequest.jsp">Подать заявку на обучение</a>
-	<a class="btn-main btn-second" href="newStud.jsp">Добавить информацию об обучении</a>
-	<a class="btn-main btn-second" href="requests.jsp">Просмотр заявок</a>
-	<a class="btn-main btn-second" href="newDepart.jsp">Добавить отдел</a>
+	<a class="btn-main btn-second" href="private/newRequest.jsp">Подать заявку на обучение</a>
+	<a class="btn-main btn-second" href="private/newStud.jsp">Добавить информацию об обучении</a>
+	<a class="btn-main btn-second" href="private/requests.jsp">Просмотр заявок</a>
+	<a class="btn-main btn-second" href="private/newDepart.jsp">Добавить отдел</a>
 </div>
 <div class="col-sm-4">
 </div>

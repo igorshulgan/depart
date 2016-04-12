@@ -55,15 +55,19 @@
 			</div>
 			<div class="form-group">
 				<label for="num">Номер программы обучения:</label>
-				<input type="number" name="num" id="num" class="form-control" required>
+				<input type="number" min="1" name="num" id="num" class="form-control" required>
 			</div>
 			<div class="form-group">
 				<label for="edutype">Форма обучения:</label>
-				<input class="form-control" id="edutype" type="text" name="edutype">
+				<select class="form-control" id="edutype" name="edutype">
+					<option value="очная">очная</option>
+					<option value="заочная">заочная</option>
+					<option value="очно-заочная">очно-заочная</option>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="hours">Количество часов:</label>
-				<input class="form-control" type="number" step="1" name="hours" required>
+				<input class="form-control" min="1" type="number" step="1" name="hours" required>
 			</div>
 			<div class="form-group">
 				<label for="eduname">Название программы:</label>
@@ -71,7 +75,7 @@
 			</div>
 			<div class="form-group">
 				<label for="amount">Стоимость обучения:</label>
-				<input class="form-control" id="amount" type="number" step="0.01" name="amount">
+				<input class="form-control" min="1" id="amount" type="number" step="0.01" name="amount" required>
 			</div>
 			<div class="form-group">
 				<label for="educomp">Обучающая сторона:</label>

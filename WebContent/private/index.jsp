@@ -15,6 +15,13 @@
 <div class="col-sm-4">
 </div>
 <div class="col-sm-4 mrg-top">
+	<%
+		
+		if (request.getParameter("error") == "1") {
+			out.println("Логин и пароль введены неверно");
+		}
+	%>
+	<%=request.getParameter("error")%>
 	<form role="form" action="j_security_check" method = "POST">
 			<div class="form group">
 				<label for="username">Логин:</label>

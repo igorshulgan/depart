@@ -17,7 +17,15 @@
 		</div>
 		<div class="col-sm-3">
 			<a class="logout" href="../menu.jsp">Меню</a>
-			<a class="logout" onclick="<% session.invalidate(); %>" href="login.jsp?Retry=out">Выйти</a>
+			<%
+				if (request.getParameter("btnSubmit")!=null) {
+					out.println("HI THERE");
+				}
+			%>
+			<form>
+			<input type="submit" id="btnSubmit" name="btnSubmit" value="Execute Test"/>
+			</form>
+			<a class="logout" onclick="<% session.invalidate(); %>" href="../login.jsp?Retry=out">Выйти</a>
 		</div>
 </div> 
 <div class="row">

@@ -56,7 +56,7 @@ public class AcceptStud extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json.toString());
         MoveStud.upload(json);
-        response.sendRedirect("/webApp/");
+        response.sendRedirect("/webApp/private/requests.jsp");
     }
 
 }

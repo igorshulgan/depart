@@ -75,3 +75,11 @@ th {
 thead {
 	background-color: #EFE9F2;
 }
+.error {
+	color: red;
+	border: 1px solid red;
+	width: 100%;
+	padding-left: 8px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}

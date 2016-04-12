@@ -20,7 +20,7 @@ import org.json.simple.parser.ParseException;
 import com.depart.writeTODB.*;
 import com.google.gson.Gson;
 
-@WebServlet("/StudUpload")
+@WebServlet("/private/StudUpload")
 public class StudUpload extends HttpServlet {
 
 

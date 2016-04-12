@@ -16,16 +16,11 @@
 			<h1>Подать заявку на обучение сотрудника</h1>
 		</div>
 		<div class="col-sm-3">
-			<a class="logout" href="../menu.jsp">Меню</a>
-			<%
-				if (request.getParameter("btnSubmit")!=null) {
-					out.println("HI THERE");
-				}
-			%>
-			<form>
-			<input type="submit" id="btnSubmit" name="btnSubmit" value="Execute Test"/>
+			<a class="logout menu" href="../menu.jsp">Меню</a>
+			
+			<form action="LogOut">
+				<button class="logout" type="submit">Выйти</button>
 			</form>
-			<a class="logout" onclick="<% session.invalidate(); %>" href="../login.jsp?Retry=out">Выйти</a>
 		</div>
 </div> 
 <div class="row">

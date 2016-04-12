@@ -21,12 +21,18 @@ h1 {
 	color: white;
 	text-decoration: none;
 	font-size: 120%;
-	padding-top:30%;
-	margin-left: 10%;
+	padding-top: 3%;
+	margin-left: 0%;
 	display: inline;
+	background-color: #B8BCBF;
+	border: 0px;
+}
+.menu {
+	margin-left: 4%;
 }
 .logout:hover {
 	text-decoration: none;
+	color: #E9EEF2;
 }
 .header {
 	background-color: #B8BCBF; 

@@ -32,7 +32,7 @@ public class LogOut extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     		request.getSession().invalidate();
-    		response.sendRedirect("/login.jsp?Retry=out");
+    		response.sendRedirect("/webApp/?Retry=out");
   
     		
     }

@@ -17,8 +17,10 @@
 			<h1>Добавить данные об обучении сотрудника</h1>
 		</div>
 		<div class="col-sm-3">
-			<a class="logout" href="../menu.jsp">Меню</a>
-			<a class="logout" onclick="<% session.invalidate(); %>" href="../login.jsp?Retry=out">Выйти</a>
+			<a class="logout menu" href="../menu.jsp">Меню</a>
+			<form action="LogOut">
+				<button class="logout" type="submit">Выйти</button>
+			</form>
 		</div>
 
 </div>

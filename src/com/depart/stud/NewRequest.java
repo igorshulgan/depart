@@ -56,6 +56,7 @@ public class NewRequest extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json.toString());
         UplRequest.upload(json);
+        response.sendRedirect("/webApp/");
     }
 
 }

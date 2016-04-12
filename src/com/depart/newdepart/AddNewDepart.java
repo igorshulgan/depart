@@ -56,6 +56,7 @@ public class AddNewDepart extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json.toString());
         NewDepart.upload(json);
+        response.sendRedirect("/webApp/");
     }
 
 }

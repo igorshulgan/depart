@@ -56,6 +56,7 @@ public class NewUser extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json.toString());
         SignIn.upload(json);
+        response.sendRedirect("/webApp/");
     }
 
 }

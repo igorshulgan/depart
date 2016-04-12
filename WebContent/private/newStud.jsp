@@ -6,8 +6,8 @@
 	<meta charset="UTF-8">
 	<title>Добавить обучение</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="../bootstrap-3.3.6-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -17,7 +17,7 @@
 			<h1>Добавить данные об обучении сотрудника</h1>
 		</div>
 		<div class="col-sm-3">
-			<a class="logout" href="menu.jsp">Меню</a>
+			<a class="logout" href="../menu.jsp">Меню</a>
 			<a class="logout" href="logout.jsp">Выйти</a>
 		</div>
 

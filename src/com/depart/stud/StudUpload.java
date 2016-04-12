@@ -56,6 +56,7 @@ public class StudUpload extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json.toString());
         uplStud.upload(json);
+        response.sendRedirect("/webApp/");
     }
 
 }

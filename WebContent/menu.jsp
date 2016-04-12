@@ -17,7 +17,7 @@
 			<h1>Главное меню</h1>
 		</div>
 		<div class="col-sm-2">
-			<a class="logout" onclick="<% session.invalidate(); %>" href="index.jsp?Retry=out">Выйти</a>
+			<a class="logout" onclick="<% session.invalidate(); %>" href="login.jsp?Retry=out">Выйти</a>
 		</div>
 
 </div>

@@ -17,7 +17,7 @@
 		</div>
 		<div class="col-sm-3">
 			<a class="logout" href="menu.jsp">Меню</a>
-			<a class="logout" onclick="<% session.invalidate(); %>" href="index.jsp?msg=2">Выйти</a>
+			<a class="logout" onclick="<% session.invalidate(); %>" href="index.jsp?Retry=out">Выйти</a>
 		</div>
 </div> 
 <div class="row">

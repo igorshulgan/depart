@@ -74,7 +74,7 @@
 				<label for="key">Ключ для принятия заявок:</label>
 				<input class="form-control" id="key" type="password" name="key">
 			</div>	
-			<button class="btn-main" type = "submit">Отправить</button>
+			<button class="btn-main"  type = "submit">Отправить</button>
 	</form>
 </div>
 <div class="col-sm-3">

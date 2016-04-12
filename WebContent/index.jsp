@@ -16,12 +16,13 @@
 </div>
 <div class="col-sm-4 mrg-top">
 	<%
-		
-		if (request.getParameter("error") == "1") {
-			out.println("Логин и пароль введены неверно");
+		if ("True".equals(request.getParameter("Retry"))) {
+			out.println("<div class='error'>Логин и пароль введены неверно</div>");
+		}
+		if ("out".equals(request.getParameter("Retry"))) {
+			out.println("<div class='error'>Пользователь вышел из системы</div>");
 		}
 	%>
-	<%=request.getParameter("error")%>
 	<form role="form" action="j_security_check" method = "POST">
 			<div class="form group">
 				<label for="username">Логин:</label>
@@ -33,7 +34,7 @@
 			</div>
 		<button class="btn-main" type = "submit">Войти</button>
 	</form>
-	<a class="btn-main btn-second" href="../signin.jsp">Регистрация</a>
+	<a class="btn-main btn-second" href="signin.jsp">Регистрация</a>
 </div>
 <div class="col-sm-4">
 </div>

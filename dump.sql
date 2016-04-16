@@ -48,7 +48,7 @@ BEGIN
 	END;
 	IF ((SELECT budget FROM department WHERE id = 
 		(SELECT department FROM users WHERE id = a_user)) >= a_cost) THEN
-			UPDATE user_request SET enough_money = 1 WHERE id = LAST(id);
+			UPDATE user_request SET enough_money = 1 WHERE id = (SELECT max(id) FROM user_request);
 	END IF;
 	
 	return 1;
@@ -219,40 +219,6 @@ ALTER SEQUENCE department_id_seq OWNED BY department.id;
 
 
 --
--- Name: documents; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE documents (
-    id integer NOT NULL,
-    name character varying(255),
-    hours integer
-);
-
-
-ALTER TABLE documents OWNER TO postgres;
-
---
--- Name: documents_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE documents_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE documents_id_seq OWNER TO postgres;
-
---
--- Name: documents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE documents_id_seq OWNED BY documents.id;
-
-
---
 -- Name: user_request; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -386,13 +352,6 @@ ALTER TABLE ONLY department ALTER COLUMN id SET DEFAULT nextval('department_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY documents ALTER COLUMN id SET DEFAULT nextval('documents_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY user_request ALTER COLUMN id SET DEFAULT nextval('user_request_id_seq'::regclass);
 
 
@@ -427,27 +386,10 @@ SELECT pg_catalog.setval('department_id_seq', 1, true);
 
 
 --
--- Data for Name: documents; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY documents (id, name, hours) FROM stdin;
-\.
-
-
---
--- Name: documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('documents_id_seq', 1, false);
-
-
---
 -- Data for Name: user_request; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY user_request (id, user_id, num_stud, doc_id, type_st, name_st, budget_amount, cost, hours, comp_name, enough_money) FROM stdin;
-6	1	1	\N			\N	0.73	-9		0
-48	48	202	\N	pdf	sdsdf	\N	-0.17	-15	sdfsd	\N
 \.
 
 
@@ -455,7 +397,7 @@ COPY user_request (id, user_id, num_stud, doc_id, type_st, name_st, budget_amoun
 -- Name: user_request_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('user_request_id_seq', 6, true);
+SELECT pg_catalog.setval('user_request_id_seq', 12, true);
 
 
 --
@@ -463,11 +405,6 @@ SELECT pg_catalog.setval('user_request_id_seq', 6, true);
 --
 
 COPY user_studies (id, user_id, num_stud, doc_id, type_st, name_st, budget_amount, cost, hours) FROM stdin;
-4	1	-10233	\N	123	gdfg	\N	-0.18	111
-7	1	-10233	\N	123	gdfg	\N	-0.18	111
-8	\N	\N	\N	\N	\N	\N	\N	\N
-9	1	12	\N	dfg	dog	\N	-0.22	-13
-10	\N	\N	\N	dfgdfg	\N	\N	\N	\N
 \.
 
 
@@ -475,7 +412,7 @@ COPY user_studies (id, user_id, num_stud, doc_id, type_st, name_st, budget_amoun
 -- Name: user_studies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('user_studies_id_seq', 10, true);
+SELECT pg_catalog.setval('user_studies_id_seq', 11, true);
 
 
 --
@@ -493,7 +430,7 @@ COPY users (id, password, login, num_id, name, surname, secondname, role, depart
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 50, true);
+SELECT pg_catalog.setval('users_id_seq', 61, true);
 
 
 --
@@ -502,14 +439,6 @@ SELECT pg_catalog.setval('users_id_seq', 50, true);
 
 ALTER TABLE ONLY department
     ADD CONSTRAINT department_pkey PRIMARY KEY (id);
-
-
---
--- Name: documents_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY documents
-    ADD CONSTRAINT documents_pkey PRIMARY KEY (id);
 
 
 --
@@ -534,6 +463,22 @@ ALTER TABLE ONLY user_studies
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_request_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_request
+    ADD CONSTRAINT user_request_id_fk FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: user_studies_user_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_studies
+    ADD CONSTRAINT user_studies_user_fk FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --

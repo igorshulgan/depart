@@ -24,7 +24,7 @@ import com.google.gson.Gson;
 public class Requests extends HttpServlet {
 
 
-	/**
+	/*
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -33,9 +33,10 @@ public class Requests extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     		JSONArray res = null;
-			try {
+    		try {
 				res = GetRequests.get();
 			} catch (ParseException e) {
+			
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

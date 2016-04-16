@@ -38,7 +38,7 @@
 			    JSONParser parser = new JSONParser();
 				JSONArray requests = (JSONArray) parser.parse(requestxt);
 		    %>
-			<table class="table table-hover table-condensed table-bordered">
+			<table class="table table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th>Сотрудник</th>
@@ -74,7 +74,7 @@
 							if ("1".equals(req.get("enough_money").toString())) {
 								out.println("<td><button class='btn-main' type = 'submit'>Принять</button></td>");
 							} else {
-								out.println("<td><button disabled class='btn-main' type = 'submit'>Принять</button></td>");
+								out.println("<td></td>");
 							}							
 							out.println("</form>");							
 							out.println("</tr>");

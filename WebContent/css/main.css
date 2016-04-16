@@ -89,3 +89,9 @@ thead {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
+tr.right {
+	background-color: #CCFFE1;
+}
+tr.wrong {
+	background-color: #FFBDBD;
+}

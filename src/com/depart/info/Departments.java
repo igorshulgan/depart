@@ -38,6 +38,7 @@ public class Departments extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			response.setCharacterEncoding("UTF-8");
     		response.getWriter().write(res.toString());
     }
 

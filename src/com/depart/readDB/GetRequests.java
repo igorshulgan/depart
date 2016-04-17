@@ -17,9 +17,10 @@ public class GetRequests {
 	public static JSONArray get() throws ParseException{
 		Connection db = connectionDB.createConnection();
 	
-		String sql = "SELECT user_request.*, users.name, users.secondname, users.surname"
+		String sql = "SELECT user_request.*, users.name, users.secondname, users.surname, department.name as depart"
 				+ " FROM user_request inner join users on "
-				+ "(user_request.user_id = users.id);";
+				+ "(user_request.user_id = users.id) "
+				+ "inner join department on(department.id = users.department);";
 		JSONArray res = new JSONArray();
 		
 		System.out.println(sql);

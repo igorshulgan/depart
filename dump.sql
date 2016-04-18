@@ -147,6 +147,8 @@ BEGIN
 	 (SELECT name_st FROM user_request WHERE a_id = id),
 	 (SELECT type_st FROM user_request WHERE a_id = id)));
 	 IF (ans = 1) THEN
+		UPDATE department SET budget = budget - (SELECT cost FROM user_request WHERE a_id = id) 
+			WHERE id = (SELECT department FROM users WHERE id = (SELECT user_id FROM user_request WHERE a_id = id));
 		DELETE FROM user_request WHERE id = a_id;
 	 END IF;
 
@@ -226,10 +228,8 @@ CREATE TABLE user_request (
     id integer NOT NULL,
     user_id integer,
     num_stud integer,
-    doc_id integer,
     type_st character varying(12),
     name_st character varying(255),
-    budget_amount numeric,
     cost numeric,
     hours integer,
     comp_name character varying(100),
@@ -268,10 +268,8 @@ CREATE TABLE user_studies (
     id integer NOT NULL,
     user_id integer,
     num_stud integer,
-    doc_id integer,
     type_st character varying(12),
     name_st character varying(255),
-    budget_amount numeric,
     cost numeric,
     hours integer
 );
@@ -374,7 +372,8 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 --
 
 COPY department (id, name, budget) FROM stdin;
-1	Cycling Department	1000
+2	123213	123123
+1	Cycling Department	998.8
 \.
 
 
@@ -382,14 +381,14 @@ COPY department (id, name, budget) FROM stdin;
 -- Name: department_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('department_id_seq', 1, true);
+SELECT pg_catalog.setval('department_id_seq', 2, true);
 
 
 --
 -- Data for Name: user_request; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY user_request (id, user_id, num_stud, doc_id, type_st, name_st, budget_amount, cost, hours, comp_name, enough_money) FROM stdin;
+COPY user_request (id, user_id, num_stud, type_st, name_st, cost, hours, comp_name, enough_money) FROM stdin;
 \.
 
 
@@ -397,14 +396,15 @@ COPY user_request (id, user_id, num_stud, doc_id, type_st, name_st, budget_amoun
 -- Name: user_request_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('user_request_id_seq', 12, true);
+SELECT pg_catalog.setval('user_request_id_seq', 13, true);
 
 
 --
 -- Data for Name: user_studies; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY user_studies (id, user_id, num_stud, doc_id, type_st, name_st, budget_amount, cost, hours) FROM stdin;
+COPY user_studies (id, user_id, num_stud, type_st, name_st, cost, hours) FROM stdin;
+12	49	3	очная	лрх	1.2	28
 \.
 
 
@@ -412,7 +412,7 @@ COPY user_studies (id, user_id, num_stud, doc_id, type_st, name_st, budget_amoun
 -- Name: user_studies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('user_studies_id_seq', 11, true);
+SELECT pg_catalog.setval('user_studies_id_seq', 12, true);
 
 
 --

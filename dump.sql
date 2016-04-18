@@ -306,7 +306,6 @@ CREATE TABLE users (
     id integer NOT NULL,
     password character varying(255),
     login character varying(255),
-    num_id integer,
     name character varying(255),
     surname character varying(255),
     secondname character varying(255),
@@ -419,10 +418,10 @@ SELECT pg_catalog.setval('user_studies_id_seq', 12, true);
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY users (id, password, login, num_id, name, surname, secondname, role, department, key) FROM stdin;
-49	daaeb70386eaff51d77a0dc82ed8f130	igor_shulgan	\N	Игорь	Шульган	Игоревич	manager	1	\N
-48	dd97813dd40be87559aaefed642c3fbb	igor	\N	Igor	Shulgan		manager	1	\N
-50	dd97813dd40be87559aaefed642c3fbb	igor	\N	Игорь	Шульган	Игоревич	Boss	1	e46gh78
+COPY users (id, password, login, name, surname, secondname, role, department, key) FROM stdin;
+49	daaeb70386eaff51d77a0dc82ed8f130	igor_shulgan	Игорь	Шульган	Игоревич	manager	1	\N
+48	dd97813dd40be87559aaefed642c3fbb	igor	Igor	Shulgan		manager	1	\N
+50	dd97813dd40be87559aaefed642c3fbb	igor	Игорь	Шульган	Игоревич	Boss	1	e46gh78
 \.
 
 

@@ -57,6 +57,11 @@
 						for (int i = 0; i < requests.size(); i ++) {	
 							req = (JSONObject) requests.get(i);	
 							out.println("<tr>");
+							if ("1".equals(req.get("enough_money").toString())) {
+								out.println("<tr class='right'>");
+							} else {
+								out.println("<tr class='wrong'>");
+							}
 							out.println("<td>" + req.get("secondname") + " " + req.get("name") + " " + req.get("surname") + "</td>");
 							out.println("<td>" + req.get("num_stud") + "</td>");
 							out.println("<td>" + req.get("type_st") + "</td>");
@@ -66,9 +71,12 @@
 							out.println("<td>" + req.get("comp_name") + "</td>");
 							out.println("<form action = 'AcceptStud' method = 'POST'>");
 							out.println("<input hidden type='number' name='id' value='" + req.get("id") + "'>");
-							out.println("<td><button class='btn-main' type = 'submit'>Принять</button></td>");
-							out.println("</form>");
-							
+							if ("1".equals(req.get("enough_money").toString())) {
+								out.println("<td><button class='btn-main' type = 'submit'>Принять</button></td>");
+							} else {
+								out.println("<td><button disabled class='btn-main' type = 'submit'>Принять</button></td>");
+							}							
+							out.println("</form>");							
 							out.println("</tr>");
 							
 						}

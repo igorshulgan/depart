@@ -42,6 +42,7 @@
 				<thead>
 					<tr>
 						<th>Сотрудник</th>
+						<th>Отдел</th>
 						<th>Номер программы обучения</th>
 						<th>Форма обучения</th>
 						<th>Количество часов</th>
@@ -63,6 +64,7 @@
 								out.println("<tr class='wrong'>");
 							}
 							out.println("<td>" + req.get("secondname") + " " + req.get("name") + " " + req.get("surname") + "</td>");
+							out.println("<td>" + req.get("depart") + "</td>");
 							out.println("<td>" + req.get("num_stud") + "</td>");
 							out.println("<td>" + req.get("type_st") + "</td>");
 							out.println("<td>" + req.get("hours") + "</td>");

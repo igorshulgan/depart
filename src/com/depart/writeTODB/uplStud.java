@@ -22,6 +22,7 @@ public class uplStud {
 		JSONArray cost = (JSONArray) req.get("amount");
 		JSONArray name = (JSONArray) req.get("eduname");
 		JSONArray type = (JSONArray) req.get("edutype");
+		JSONArray comp = (JSONArray) req.get("educomp");
 		
 		if (hours.get(0).toString().isEmpty()) {
 			hours.clear();
@@ -31,7 +32,7 @@ public class uplStud {
 		
 		String sql = "SELECT * FROM adduserstud(" + user.get(0) + ", " + num.get(0) +
 				", " + hours.get(0) + ", " + cost.get(0) + 
-				", '"  + name.get(0) + "', '" + type.get(0) + "')";
+				", '"  + name.get(0) + "', '" + type.get(0) + "', '"  + comp.get(0) +"')";
 		
 		System.out.println(sql);
 		try {

@@ -38,10 +38,11 @@
 			    JSONParser parser = new JSONParser();
 				JSONArray requests = (JSONArray) parser.parse(requestxt);
 		    %>
-			<table class="table table-hover table-condensed table-bordered">
+			<table class="table table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th>Сотрудник</th>
+						<th>Отдел</th>
 						<th>Номер программы обучения</th>
 						<th>Форма обучения</th>
 						<th>Количество часов</th>
@@ -62,7 +63,8 @@
 							} else {
 								out.println("<tr class='wrong'>");
 							}
-							out.println("<td>" + req.get("secondname") + " " + req.get("name") + " " + req.get("surname") + "</td>");
+							out.println("<td>" + req.get("surname") + " " + req.get("name") + " " + req.get("secondname") + "</td>");
+							out.println("<td>" + req.get("depart") + "</td>");
 							out.println("<td>" + req.get("num_stud") + "</td>");
 							out.println("<td>" + req.get("type_st") + "</td>");
 							out.println("<td>" + req.get("hours") + "</td>");
@@ -74,7 +76,7 @@
 							if ("1".equals(req.get("enough_money").toString())) {
 								out.println("<td><button class='btn-main' type = 'submit'>Принять</button></td>");
 							} else {
-								out.println("<td><button disabled class='btn-main' type = 'submit'>Принять</button></td>");
+								out.println("<td></td>");
 							}							
 							out.println("</form>");							
 							out.println("</tr>");

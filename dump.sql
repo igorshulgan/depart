@@ -59,30 +59,6 @@ $$;
 ALTER FUNCTION public.addnewrequest(a_user integer, a_num integer, a_hours integer, a_cost numeric, a_comp character varying, a_name character varying, a_type character varying) OWNER TO postgres;
 
 --
--- Name: adduser(character varying, character varying, character varying, character varying, integer, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
-
-CREATE FUNCTION adduser(a_name character varying, a_surname character varying, a_secondname character varying, a_role character varying, a_department integer, a_login character varying, a_password character varying) RETURNS integer
-    LANGUAGE plpgsql
-    AS $$
-BEGIN
-	BEGIN
-		INSERT INTO users (name, surname, secondname, role, department,
-		 login, password)
-		 VALUES(a_name, a_surname, a_secondname, a_role, a_department,
-		 a_login, a_password);
-	EXCEPTION
-		WHEN unique_violation THEN
-			return 0;
-	END;
-	return 1;
-END;
-$$;
-
-
-ALTER FUNCTION public.adduser(a_name character varying, a_surname character varying, a_secondname character varying, a_role character varying, a_department integer, a_login character varying, a_password character varying) OWNER TO postgres;
-
---
 -- Name: adduser(character varying, character varying, character varying, character varying, integer, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -131,6 +107,30 @@ $$;
 ALTER FUNCTION public.adduserstud(a_user integer, a_num integer, a_hours integer, a_cost numeric, a_name character varying, a_type character varying) OWNER TO postgres;
 
 --
+-- Name: adduserstud(integer, integer, integer, numeric, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION adduserstud(a_user integer, a_num integer, a_hours integer, a_cost numeric, a_name character varying, a_type character varying, a_comp character varying) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+	BEGIN
+		INSERT INTO user_studies (user_id, num_stud, hours, cost, name_st,
+		 type_st, comp_name)
+		 VALUES(a_user, a_num, a_hours, a_cost, a_name,
+		 a_type, a_comp);
+	EXCEPTION
+		WHEN unique_violation THEN
+			return 0;
+	END;
+	return 1;
+END;
+$$;
+
+
+ALTER FUNCTION public.adduserstud(a_user integer, a_num integer, a_hours integer, a_cost numeric, a_name character varying, a_type character varying, a_comp character varying) OWNER TO postgres;
+
+--
 -- Name: movestud(integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -145,7 +145,8 @@ BEGIN
 	 (SELECT hours FROM user_request WHERE a_id = id),
 	 (SELECT cost FROM user_request WHERE a_id = id),
 	 (SELECT name_st FROM user_request WHERE a_id = id),
-	 (SELECT type_st FROM user_request WHERE a_id = id)));
+	 (SELECT type_st FROM user_request WHERE a_id = id),
+	 (SELECT comp_name FROM user_request WHERE a_id = id)));
 	 IF (ans = 1) THEN
 		UPDATE department SET budget = budget - (SELECT cost FROM user_request WHERE a_id = id) 
 			WHERE id = (SELECT department FROM users WHERE id = (SELECT user_id FROM user_request WHERE a_id = id));
@@ -271,7 +272,8 @@ CREATE TABLE user_studies (
     type_st character varying(12),
     name_st character varying(255),
     cost numeric,
-    hours integer
+    hours integer,
+    comp_name character varying
 );
 
 
@@ -306,7 +308,6 @@ CREATE TABLE users (
     id integer NOT NULL,
     password character varying(255),
     login character varying(255),
-    num_id integer,
     name character varying(255),
     surname character varying(255),
     secondname character varying(255),
@@ -396,15 +397,14 @@ COPY user_request (id, user_id, num_stud, type_st, name_st, cost, hours, comp_na
 -- Name: user_request_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('user_request_id_seq', 13, true);
+SELECT pg_catalog.setval('user_request_id_seq', 15, true);
 
 
 --
 -- Data for Name: user_studies; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY user_studies (id, user_id, num_stud, type_st, name_st, cost, hours) FROM stdin;
-12	49	3	очная	лрх	1.2	28
+COPY user_studies (id, user_id, num_stud, type_st, name_st, cost, hours, comp_name) FROM stdin;
 \.
 
 
@@ -412,17 +412,17 @@ COPY user_studies (id, user_id, num_stud, type_st, name_st, cost, hours) FROM st
 -- Name: user_studies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('user_studies_id_seq', 12, true);
+SELECT pg_catalog.setval('user_studies_id_seq', 14, true);
 
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY users (id, password, login, num_id, name, surname, secondname, role, department, key) FROM stdin;
-49	daaeb70386eaff51d77a0dc82ed8f130	igor_shulgan	\N	Игорь	Шульган	Игоревич	manager	1	\N
-48	dd97813dd40be87559aaefed642c3fbb	igor	\N	Igor	Shulgan		manager	1	\N
-50	dd97813dd40be87559aaefed642c3fbb	igor	\N	Игорь	Шульган	Игоревич	Boss	1	e46gh78
+COPY users (id, password, login, name, surname, secondname, role, department, key) FROM stdin;
+49	daaeb70386eaff51d77a0dc82ed8f130	igor_shulgan	Игорь	Шульган	Игоревич	manager	1	\N
+48	dd97813dd40be87559aaefed642c3fbb	igor	Igor	Shulgan		manager	1	\N
+50	dd97813dd40be87559aaefed642c3fbb	igor	Игорь	Шульган	Игоревич	Boss	1	e46gh78
 \.
 
 

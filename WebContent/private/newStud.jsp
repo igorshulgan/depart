@@ -32,6 +32,9 @@
 	
 	<form action = "StudUpload" method = "POST">
 		<% 
+			/*
+			* Отправление запроса на сервер для получения данных о пользователях
+			*/
  			URL url = new URL("http://localhost:8080/webApp/Users");
 		    BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 		    String str = new String();

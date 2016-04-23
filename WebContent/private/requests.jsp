@@ -27,6 +27,9 @@
 </div>
 <div class="col-sm-10">
 			<% 
+				/*
+				* Отправление запроса на сервер для получения данных о заявках
+				*/
 	 			URL url = new URL("http://localhost:8080/webApp/Requests");
 			    BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 			    String str = new String();

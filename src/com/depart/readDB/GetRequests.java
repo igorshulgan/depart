@@ -1,5 +1,7 @@
 package com.depart.readDB;
-
+/*
+ * Подключение к базе, для получения таблицы запросов
+ */
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,7 +18,9 @@ public class GetRequests {
 	
 	public static JSONArray get() throws ParseException{
 		Connection db = connectionDB.createConnection();
-	
+		/*
+		 * SQL для выполнения на базе
+		 */
 		String sql = "SELECT user_request.*, users.name, users.secondname, users.surname, department.name as depart"
 				+ " FROM user_request inner join users on "
 				+ "(user_request.user_id = users.id) "
@@ -26,15 +30,13 @@ public class GetRequests {
 		System.out.println(sql);
 		try {
 			Statement sqlStat = db.createStatement();
-			res = ResultSetConverter.convert(sqlStat.executeQuery(sql));
-			System.out.println(res);
+			res = ResultSetConverter.convert(sqlStat.executeQuery(sql));  //Конвертировать результат в JSON
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-		connectionDB.closeConnection(db);
+		connectionDB.closeConnection(db); //Закрыть соединение с базой
 		return res;
 	}
 }

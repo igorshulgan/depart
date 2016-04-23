@@ -1,5 +1,7 @@
 package com.depart.writeTODB;
-
+/*
+ * Добавление в базу нового отдела
+ */
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,26 +16,22 @@ import com.depart.connection.connectionDB;
 public class NewDepart {
 	
 	public static void upload(JSONObject req){
-		Connection db = connectionDB.createConnection();
+		Connection db = connectionDB.createConnection(); //Установить соединение с базой
 	
-		JSONArray name = (JSONArray) req.get("name");
-		JSONArray budget = (JSONArray) req.get("budget");
+		JSONArray name = (JSONArray) req.get("name"); //Название отдела
+		JSONArray budget = (JSONArray) req.get("budget"); //Бюджет отдела
 		
 		
 		String sql = "SELECT * FROM newdepart('" + name.get(0) + "', "
-				+ budget.get(0) + ")";
+				+ budget.get(0) + ")"; //SQL для добавления отдела
 		
-		System.out.println(sql);
 		try {
 			Statement sqlStat = db.createStatement();
-			sqlStat.execute(sql);
-			
-			
+			sqlStat.execute(sql);	
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-		connectionDB.closeConnection(db);
+		connectionDB.closeConnection(db); //Закрыть соединение с базой
 	}
 }

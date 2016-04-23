@@ -1,5 +1,7 @@
 package com.depart.info;
-
+/*
+ * Получить информацию по существующим пользователям
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,9 +25,6 @@ import com.google.gson.Gson;
 @WebServlet("/Users")
 public class Users extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 
@@ -33,12 +32,15 @@ public class Users extends HttpServlet {
             throws ServletException, IOException {
     		JSONArray res = null;
 			try {
+				/*
+				 * Подключиться к базе, для выполнения запроса 
+				 * получения пользователей
+				 */
 				res = GetUsers.get();
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			response.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8"); //Кодировка данных
     		response.getWriter().write(res.toString());
     		
     }

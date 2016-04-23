@@ -1,5 +1,7 @@
 package com.depart.stud;
-
+/*
+ * Получить данные о существующих не принятых заявках на обучение
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,24 +25,17 @@ import com.google.gson.Gson;
 @WebServlet("/Requests")
 public class Requests extends HttpServlet {
 
-
-	/*
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     		JSONArray res = null;
     		try {
-				res = GetRequests.get();
+				res = GetRequests.get(); //Получение данных с базы
 			} catch (ParseException e) {
-			
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			response.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8"); //Кодировка данных
     		response.getWriter().write(res.toString());
     }
 

@@ -1,23 +1,18 @@
 package com.depart.connection;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Scanner;
-
-//import org.json.simple.JSONArray;
-//import org.json.simple.JSONObject;
-//import org.json.simple.parser.JSONParser;
 
 public class connectionDB {
 	
     public static Connection createConnection() {
     	Connection connection = null;
         System.out.println("-------- PostgreSQL JDBC Connection Testing ------------");
-
+        
+        /*
+         * Проверка наличия драйвера PostgreSQL
+         */
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException var3) {
@@ -26,7 +21,9 @@ public class connectionDB {
         }
 
         System.out.println("PostgreSQL JDBC Driver Registered!");
-
+        /*
+         * Проверка подключения к базе данных
+         */
         try {
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/depart", "postgres", "postgres");
         } catch (SQLException var2) {
@@ -43,10 +40,15 @@ public class connectionDB {
     }
     public static void closeConnection(Connection con)
     {
+    	/*
+    	 * Закрыть соединение с базой
+    	 */
     	try {
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			/*
+			 * Catch the exception if occurred
+			 */
 			e.printStackTrace();
 		}
     }

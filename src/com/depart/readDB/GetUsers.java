@@ -1,5 +1,7 @@
 package com.depart.readDB;
-
+/*
+ * Получить информацию о пользователях
+ */
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,21 +19,19 @@ public class GetUsers {
 	public static JSONArray get() throws ParseException{
 		Connection db = connectionDB.createConnection();
 	
-		String sql = "SELECT name, surname, secondname, id FROM users";
+		String sql = "SELECT name, surname, secondname, id FROM users"; //SQL для выполнения на базе
 		JSONArray res = new JSONArray();
 		
 		System.out.println(sql);
 		try {
 			Statement sqlStat = db.createStatement();
-			res = ResultSetConverter.convert(sqlStat.executeQuery(sql));
-			System.out.println(res);
+			res = ResultSetConverter.convert(sqlStat.executeQuery(sql)); //Конвертировать результат в JSON
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-		connectionDB.closeConnection(db);
+		connectionDB.closeConnection(db); //Закрыть соединение с базой
 		return res;
 	}
 }

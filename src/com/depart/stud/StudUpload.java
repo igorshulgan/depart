@@ -1,5 +1,7 @@
 package com.depart.stud;
-
+/*
+ * Загрузка информации об прошедшим обучении сотрудника
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,21 +25,15 @@ import com.google.gson.Gson;
 @WebServlet("/private/StudUpload")
 public class StudUpload extends HttpServlet {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
-     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    	request.setCharacterEncoding("UTF-8");
-    	
+    	request.setCharacterEncoding("UTF-8"); //Кодировка данных
+    	/*
+    	 * Обертка получаемых данных в JSON
+    	 */
         Map<String, String[]> options = new LinkedHashMap<>();
         
         options = request.getParameterMap();
@@ -52,11 +48,11 @@ public class StudUpload extends HttpServlet {
 			e.printStackTrace();
 		}
         
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json"); 
+        response.setCharacterEncoding("UTF-8"); //Кодировка данных
         response.getWriter().write(json.toString());
-        uplStud.upload(json);
-        response.sendRedirect("/webApp/");
+        uplStud.upload(json); //Отправить данные для загрузки в базу
+        response.sendRedirect("/webApp/"); //Редирект на главную страницу
     }
 
 }
